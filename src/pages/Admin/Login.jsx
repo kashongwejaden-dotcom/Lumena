@@ -21,8 +21,8 @@ const Login = () => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
-      <div style={{ backgroundColor: 'var(--color-white)', padding: '40px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-md)', width: '100%', maxWidth: '400px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', backgroundColor: 'var(--color-bg)', padding: '20px' }}>
+      <div style={{ backgroundColor: 'var(--color-white)', padding: 'clamp(20px, 5vw, 40px)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-md)', width: '100%', maxWidth: '400px' }}>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <div style={{ 
             width: '60px', height: '60px', borderRadius: '50%', backgroundColor: 'var(--color-soft-pink)', 
