@@ -32,29 +32,29 @@ const ProductCard = ({ product }) => {
           e.currentTarget.style.borderColor = 'var(--color-border)';
         }}>
           
-          <div style={{ height: '280px', overflow: 'hidden', backgroundColor: 'var(--color-bg-alt)', padding: '15px' }}>
+          <div className="product-card-image-container">
             <img 
               src={product.image} 
               alt={product.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }}
+              className="product-card-image"
             />
           </div>
           
-          <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'var(--color-white)', textAlign: 'center' }}>
-            <h3 style={{ fontSize: '1.6rem', marginBottom: '8px', flex: 1, fontWeight: 700, fontFamily: 'var(--font-logo)', color: 'var(--color-accent)' }}>
+          <div className="product-card-info">
+            <h3 className="product-card-title">
               {product.name}
             </h3>
             
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '15px' }}>
-              <span style={{ fontWeight: '500', fontSize: '1.1rem', color: 'var(--color-text)' }}>
+            <div className="product-card-price-container">
+              <span className="product-card-price-usd">
                 {prices.usd}
               </span>
-              <span style={{ fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
+              <span className="product-card-price-fc">
                 ~ {prices.fc}
               </span>
             </div>
 
-            <button className="btn-primary" style={{ alignSelf: 'center', padding: '10px 24px', fontSize: '0.9rem' }}>
+            <button className="btn-primary product-card-btn">
               Voir détails
             </button>
           </div>

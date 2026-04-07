@@ -43,42 +43,34 @@ const ProductDetail = () => {
           <span>Continuer vos achats</span>
         </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '60px', alignItems: 'start' }}>
+        <div className="product-detail-grid">
           
           {/* Product Image Section */}
-          <div style={{ position: 'sticky', top: '120px' }}>
-            <div style={{ 
-              backgroundColor: 'var(--color-bg-alt)', 
-              height: '600px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              boxShadow: 'var(--shadow-sm)',
-              borderRadius: 'var(--radius-lg)' /* Ajout arrondi */
-            }}>
+          <div className="product-detail-image-section">
+            <div className="product-detail-image-wrapper">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 'var(--radius-lg)' }}
+                className="product-detail-image"
               />
             </div>
           </div>
 
           {/* Product Info Section */}
-          <div style={{ padding: '20px 0' }}>
+          <div className="product-detail-info-section">
             <div style={{ marginBottom: '40px' }}>
-              <span style={{ fontSize: '0.85rem', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '3px', display: 'block', marginBottom: '16px', fontWeight: '600' }}>
+              <span className="product-detail-category">
                 {product.category}
               </span>
-              <h1 style={{ fontFamily: 'var(--font-logo)', fontSize: '3.5rem', marginBottom: '20px', color: 'var(--color-accent)', lineHeight: '1.2', fontWeight: 700 }}>
+              <h1 className="product-detail-title">
                 {product.name}
               </h1>
               
-              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '15px', marginBottom: '30px' }}>
-                <span style={{ fontSize: '1.8rem', fontWeight: '500', color: 'var(--color-text)' }}>
+              <div className="product-detail-price-wrapper">
+                <span className="product-detail-price-usd">
                   {prices.usd}
                 </span>
-                <span style={{ fontSize: '1.2rem', color: 'var(--color-text-light)', position: 'relative', top: '-4px' }}>
+                <span className="product-detail-price-fc">
                   / {prices.fc}
                 </span>
               </div>

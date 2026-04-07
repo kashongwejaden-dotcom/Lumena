@@ -8,13 +8,13 @@ const Home = () => {
   return (
     <div className="fade-in">
       {/* Hero Section */}
-      <section style={{
+      <section className="hero-section" style={{
         position: 'relative',
-        padding: '120px 20px 100px',
+        padding: '80px 0', /* Un peu moins de padding vertical sur mobile */
         textAlign: 'center',
         marginBottom: '60px',
         overflow: 'hidden',
-        minHeight: '60vh',
+        minHeight: '50vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center'
@@ -48,7 +48,7 @@ const Home = () => {
         <div className="container" style={{ maxWidth: '800px', position: 'relative', zIndex: 1 }}>
           <span className="fade-in delay-1" style={{ 
             display: 'inline-block', 
-            fontSize: '1rem', 
+            fontSize: '0.9rem', 
             textTransform: 'uppercase', 
             letterSpacing: '4px', 
             color: 'var(--color-text-light)', 
@@ -57,27 +57,14 @@ const Home = () => {
           }}>
             Collections Douceur
           </span>
-          <h1 className="fade-in delay-2" style={{ 
-            fontSize: '5rem', 
-            marginBottom: '20px', 
-            color: 'var(--color-accent)',
-            lineHeight: '1.2',
-            fontWeight: 400
-          }}>
+          <h1 className="fade-in delay-2 hero-title">
             Sublimez votre style avec Lumena
           </h1>
-          <p className="fade-in delay-3" style={{ 
-            fontSize: '1.15rem', 
-            color: 'var(--color-text)', 
-            marginBottom: '40px', 
-            lineHeight: '1.8',
-            maxWidth: '650px',
-            margin: '0 auto 40px'
-          }}>
+          <p className="fade-in delay-3 hero-description">
             Découvrez notre collection d’accessoires élégants et tendance.<br/>
             Sublimez votre style en toute simplicité et commandez facilement via WhatsApp, avec paiement à la livraison.
           </p>
-          <a href="#collection" className="btn-primary fade-in delay-3" style={{ padding: '16px 36px', fontSize: '1rem', letterSpacing: '1px' }}>
+          <a href="#collection" className="btn-primary fade-in delay-3" style={{ letterSpacing: '1px' }}>
             Acheter nos produits
           </a>
         </div>
@@ -107,38 +94,38 @@ const Home = () => {
       
       {/* Advantages - Romantique Style (inspiré de l'image) */}
       <section style={{ 
-        padding: '100px 0', 
+        padding: '60px 0', 
         backgroundColor: 'var(--color-bg-alt)', /* Fond rose pâle */
         color: 'var(--color-text)',
       }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
           
-          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '40px 30px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
-            <div style={{ marginBottom: '20px', color: 'var(--color-accent)' }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '30px 20px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ marginBottom: '16px', color: 'var(--color-accent)' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
             </div>
-            <h3 style={{ fontSize: '2rem', marginBottom: '15px', color: 'var(--color-accent)', fontWeight: 400 }}>Qualité artisanale</h3>
-            <p style={{ color: 'var(--color-text-light)', fontSize: '0.95rem', lineHeight: '1.7' }}>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '12px', color: 'var(--color-accent)', fontWeight: 400 }}>Qualité artisanale</h3>
+            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', lineHeight: '1.6' }}>
               Nos chouchous sont fabriqués avec soin. Une douceur incomparable pour protéger vos cheveux et éviter la casse au quotidien.
             </p>
           </div>
 
-          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '40px 30px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
-            <div style={{ marginBottom: '20px', color: 'var(--color-accent)' }}>
-               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '30px 20px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ marginBottom: '16px', color: 'var(--color-accent)' }}>
+               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             </div>
-            <h3 style={{ fontSize: '2rem', marginBottom: '15px', color: 'var(--color-accent)', fontWeight: 400 }}>Contact direct</h3>
-            <p style={{ color: 'var(--color-text-light)', fontSize: '0.95rem', lineHeight: '1.7' }}>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '12px', color: 'var(--color-accent)', fontWeight: 400 }}>Contact direct</h3>
+            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', lineHeight: '1.6' }}>
               Notre boutique simplifie les échanges. Vous pouvez commander directement en nous laissant un message via la messagerie.
             </p>
           </div>
 
-          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '40px 30px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
-            <div style={{ marginBottom: '20px', color: 'var(--color-accent)' }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 15h0M2 9.5h20"></path></svg>
+          <div style={{ backgroundColor: 'var(--color-white)', textAlign: 'center', padding: '30px 20px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ marginBottom: '16px', color: 'var(--color-accent)' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 15h0M2 9.5h20"></path></svg>
             </div>
-            <h3 style={{ fontSize: '2rem', marginBottom: '15px', color: 'var(--color-accent)', fontWeight: 400 }}>Paiement Flex</h3>
-            <p style={{ color: 'var(--color-text-light)', fontSize: '0.95rem', lineHeight: '1.7' }}>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '12px', color: 'var(--color-accent)', fontWeight: 400 }}>Paiement Flex</h3>
+            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', lineHeight: '1.6' }}>
               Nous tenons à vous offrir le meilleur service et la plus grande sécurité en vous permettant de payer uniquement à la réception.
             </p>
           </div>
