@@ -1,0 +1,196 @@
+:root {
+  /* Pink Theme Colors */
+  --color-bg: #FFFFFF; /* Fond principal blanc pur pour un style aéré */
+  --color-bg-alt: #F7E1E6; /* Rose pâle pastel pour les sections de fond */
+  --color-white: #FFFFFF;
+  --color-text: #4A4042; /* Brun/Gris foncé pour la douceur (mieux que noir) */
+  --color-text-light: #8E7A7D;
+  --color-accent: #E86A8D; /* Rose vif élégant */
+  --color-accent-hover: #DE5B7B;
+  --color-soft-pink: #F9ECEE; /* Rose poudré clair */
+  --color-border: rgba(232, 106, 141, 0.2); /* Bordure légèrement rosée */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1EBE5A;
+  
+  --font-logo: 'Dancing Script', cursive;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Modern Shadows */
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.02);
+  --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.05);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+  
+  /* Radii - Formes plus douces */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-pill: 50px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typographie */
+h1, h2, h3, h4 {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  color: var(--color-accent); /* Titres en rose vif par défaut */
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+/* Utils */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+}
+
+.btn-primary {
+  background-color: var(--color-accent); /* Retour au rose en couleur primaire */
+  color: var(--color-white);
+  padding: 14px 32px;
+  border-radius: var(--radius-pill); /* Bouton forme pilule */
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-whatsapp {
+  background-color: var(--color-whatsapp);
+  color: white;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-whatsapp:hover {
+  background-color: var(--color-whatsapp-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  transition: all 0.4s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(194, 155, 39, 0.1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
