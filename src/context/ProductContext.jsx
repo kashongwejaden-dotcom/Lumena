@@ -40,7 +40,7 @@ export const formatPrice = (priceUSD, exchangeRate) => {
 };
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState(defaultProducts);
+  const [products, setProducts] = useState([]);
 
   const [whatsappNumber, setWhatsappNumber] = useState(() => {
     const saved = localStorage.getItem('lumena_whatsapp');
@@ -55,17 +55,14 @@ export const ProductProvider = ({ children }) => {
   // Listen to Firestore for products
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
-      if (snapshot.empty) {
-        // Fallback to default if DB is totally empty down the road
-        setProducts(defaultProducts);
-        return;
-      }
-      
       const productsData = [];
       snapshot.forEach((doc) => {
         productsData.push({ id: doc.id, ...doc.data() });
       });
       setProducts(productsData);
+    }, (error) => {
+      console.error("Firestore Error:", error);
+      alert("Erreur de connexion a la base de données. Verifiez votre configuration Firebase.");
     });
 
     return () => unsubscribe();
@@ -87,6 +84,7 @@ export const ProductProvider = ({ children }) => {
       await addDoc(collection(db, 'products'), productToAdd);
     } catch (error) {
       console.error("Error adding product: ", error);
+      alert("Erreur lors de l'ajout du produit: " + error.message);
     }
   };
 
@@ -96,6 +94,7 @@ export const ProductProvider = ({ children }) => {
       await updateDoc(productRef, updatedProduct);
     } catch (error) {
       console.error("Error updating product: ", error);
+      alert("Erreur lors de la modification: " + error.message);
     }
   };
 
@@ -105,6 +104,7 @@ export const ProductProvider = ({ children }) => {
       await deleteDoc(productRef);
     } catch (error) {
       console.error("Error deleting product: ", error);
+      alert("Erreur lors de la suppression: " + error.message);
     }
   };
 
