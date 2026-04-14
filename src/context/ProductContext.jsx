@@ -32,9 +32,11 @@ const defaultProducts = [
 ];
 
 export const formatPrice = (priceUSD, exchangeRate) => {
-  const priceFC = priceUSD * exchangeRate;
+  // Safe parsing in case data is badly formatted in DB
+  const validPriceUSD = parseFloat(priceUSD) || 0;
+  const priceFC = validPriceUSD * exchangeRate;
   return {
-    usd: `$${priceUSD.toFixed(2)}`,
+    usd: `$${validPriceUSD.toFixed(2)}`,
     fc: `${priceFC.toLocaleString('fr-FR')} FC`
   };
 };
