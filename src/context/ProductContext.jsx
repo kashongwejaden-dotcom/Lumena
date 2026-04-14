@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { db } from '../config/firebase';
-import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
 
 export const ProductContext = createContext();
 
@@ -44,15 +44,20 @@ export const formatPrice = (priceUSD, exchangeRate) => {
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
-  const [whatsappNumber, setWhatsappNumber] = useState(() => {
-    const saved = localStorage.getItem('lumena_whatsapp');
-    return saved || '1234567890';
-  });
+  const [whatsappNumber, setWhatsappNumber] = useState('1234567890');
+  const [exchangeRate, setExchangeRate] = useState(2800);
 
-  const [exchangeRate, setExchangeRate] = useState(() => {
-    const saved = localStorage.getItem('lumena_exchange_rate');
-    return saved ? parseFloat(saved) : 2800; // Default 1 USD = 2800 FC
-  });
+  // Listen to Firestore for settings
+  useEffect(() => {
+    const unsubscribe = onSnapshot(doc(db, 'settings', 'general'), (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.whatsappNumber) setWhatsappNumber(data.whatsappNumber);
+        if (data.exchangeRate) setExchangeRate(data.exchangeRate);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   // Listen to Firestore for products
   useEffect(() => {
@@ -70,13 +75,18 @@ export const ProductProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('lumena_whatsapp', whatsappNumber);
-  }, [whatsappNumber]);
-
-  useEffect(() => {
-    localStorage.setItem('lumena_exchange_rate', exchangeRate.toString());
-  }, [exchangeRate]);
+  const saveSettings = async (newWhatsapp, newExchangeRate) => {
+    try {
+      await setDoc(doc(db, 'settings', 'general'), {
+        whatsappNumber: newWhatsapp,
+        exchangeRate: newExchangeRate
+      }, { merge: true });
+      alert('Paramètres globaux enregistrés avec succès !');
+    } catch (error) {
+      console.error("Error saving settings: ", error);
+      alert("Erreur lors de la sauvegarde: " + error.message);
+    }
+  };
 
   const addProduct = async (product) => {
     try {
@@ -119,7 +129,8 @@ export const ProductProvider = ({ children }) => {
       whatsappNumber,
       setWhatsappNumber,
       exchangeRate,
-      setExchangeRate
+      setExchangeRate,
+      saveSettings
     }}>
       {children}
     </ProductContext.Provider>

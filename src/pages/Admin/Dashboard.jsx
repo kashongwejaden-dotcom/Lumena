@@ -3,7 +3,7 @@ import { ProductContext, formatPrice } from '../../context/ProductContext';
 import { Edit2, Trash2, Plus, X, Upload } from 'lucide-react';
 
 const Dashboard = () => {
-  const { products, addProduct, updateProduct, deleteProduct, whatsappNumber, setWhatsappNumber, exchangeRate, setExchangeRate } = useContext(ProductContext);
+  const { products, addProduct, updateProduct, deleteProduct, whatsappNumber, setWhatsappNumber, exchangeRate, setExchangeRate, saveSettings } = useContext(ProductContext);
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -112,6 +112,15 @@ const Dashboard = () => {
             className="form-control"
             style={{ width: '100%' }}
           />
+        </div>
+        <div style={{ gridColumn: '1 / -1', textAlign: 'right', marginTop: '10px' }}>
+          <button 
+            onClick={() => saveSettings(whatsappNumber, exchangeRate)} 
+            className="btn-primary" 
+            style={{ padding: '10px 20px', fontSize: '0.95rem' }}
+          >
+            Enregistrer les paramètres pour tous les appareils
+          </button>
         </div>
       </div>
 
