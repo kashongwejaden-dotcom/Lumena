@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { db } from '../config/firebase';
+import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 
 export const ProductContext = createContext();
 
@@ -38,13 +40,7 @@ export const formatPrice = (priceUSD, exchangeRate) => {
 };
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem('lumena_products_v2');
-    if (saved) {
-      return JSON.parse(saved);
-    }
-    return defaultProducts;
-  });
+  const [products, setProducts] = useState(defaultProducts);
 
   const [whatsappNumber, setWhatsappNumber] = useState(() => {
     const saved = localStorage.getItem('lumena_whatsapp');
@@ -56,9 +52,24 @@ export const ProductProvider = ({ children }) => {
     return saved ? parseFloat(saved) : 2800; // Default 1 USD = 2800 FC
   });
 
+  // Listen to Firestore for products
   useEffect(() => {
-    localStorage.setItem('lumena_products_v2', JSON.stringify(products));
-  }, [products]);
+    const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
+      if (snapshot.empty) {
+        // Fallback to default if DB is totally empty down the road
+        setProducts(defaultProducts);
+        return;
+      }
+      
+      const productsData = [];
+      snapshot.forEach((doc) => {
+        productsData.push({ id: doc.id, ...doc.data() });
+      });
+      setProducts(productsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('lumena_whatsapp', whatsappNumber);
@@ -68,16 +79,33 @@ export const ProductProvider = ({ children }) => {
     localStorage.setItem('lumena_exchange_rate', exchangeRate.toString());
   }, [exchangeRate]);
 
-  const addProduct = (product) => {
-    setProducts([...products, { ...product, id: Date.now().toString() }]);
+  const addProduct = async (product) => {
+    try {
+      const productToAdd = { ...product };
+      // Omit custom id if any, let Firestore generate one
+      delete productToAdd.id;
+      await addDoc(collection(db, 'products'), productToAdd);
+    } catch (error) {
+      console.error("Error adding product: ", error);
+    }
   };
 
-  const updateProduct = (id, updatedProduct) => {
-    setProducts(products.map(p => p.id === id ? { ...p, ...updatedProduct } : p));
+  const updateProduct = async (id, updatedProduct) => {
+    try {
+      const productRef = doc(db, 'products', id);
+      await updateDoc(productRef, updatedProduct);
+    } catch (error) {
+      console.error("Error updating product: ", error);
+    }
   };
 
-  const deleteProduct = (id) => {
-    setProducts(products.filter(p => p.id !== id));
+  const deleteProduct = async (id) => {
+    try {
+      const productRef = doc(db, 'products', id);
+      await deleteDoc(productRef);
+    } catch (error) {
+      console.error("Error deleting product: ", error);
+    }
   };
 
   return (
