@@ -192,13 +192,7 @@ button {
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(2, 1fr); /* Toujours 2 colonnes sur mobile */
-    gap: 16px;
-  }
-}
-
-@media (max-width: 380px) {
-  .grid {
-    grid-template-columns: 1fr; /* 1 colonne si l'écran est vraiment minuscule */
+    gap: 10px; /* Réduire l'espacement entre les colonnes */
   }
 }
 
@@ -327,25 +321,26 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .product-card-image-container {
-    height: 180px; /* Moins haut sur mobile */
-    padding: 10px;
+    height: 120px; /* Image beaucoup moins haute sur mobile */
+    padding: 8px;
   }
   .product-card-info {
-    padding: 12px 10px;
+    padding: 10px 8px;
   }
   .product-card-title {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    margin-bottom: 4px;
   }
   .product-card-price-usd {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
   .product-card-price-fc {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   .product-card-btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    width: 100%; /* Prendre toute la largeur de la petite carte */
   }
 }
 
